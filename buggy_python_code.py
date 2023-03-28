@@ -45,7 +45,13 @@ def fetch_website(urllib_version_fun, url) -> None:
     :return: None
     """
     # Import the requested version (2 or 3) of urllib
-    exec(f"import urllib{urllib_version_fun} as urllib", globals())
+    if urllib_version_fun == 2:
+        import urllib as urllib
+    if urllib_version_fun == 3:
+        import urllib3 as urllib
+    else:
+        print("Version not specified correctly")
+        return
     # Fetch and print the requested URL
 
     http = urllib3.PoolManager()
